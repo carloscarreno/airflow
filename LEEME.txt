@@ -1,0 +1,17 @@
+Introduccion
+https://innowise.com/es/blog/apache-airflow-introduction/
+
+HA
+https://medium.com/naukri-engineering/scaling-and-achieving-high-availability-ha-in-airflow-using-local-executor-cb696cefd6a7
+
+airflow Postgresql y Redis 
+https://towardsdatascience.com/deploy-apache-airflow-in-multiple-docker-containers-7f17b8b3de58
+
+aiflow on kubernetes
+https://dev.to/bhavaniravi/how-to-set-up-airflow-on-kubernetes-24i8
+
+https://www.clearpeaks.com/deploying-apache-airflow-on-a-kubernetes-cluster/
+
+Storage with Docker Compose
+https://iesgn.github.io/curso_docker_2021/sesion5/almacenamiento.html
+

@@ -1,0 +1,57 @@
+MINIO and DOCKER
+====================
+referencia:
+https://min.io/docs/minio/container/operations/install-deploy-manage/deploy-minio-single-node-single-drive.html
+https://www.youtube.com/watch?v=Z0FtabDUPtU
+https://www.youtube.com/watch?v=77lMCiiMilo
+https://medium.com/@yunuseulucay/apache-airflow-on-docker-with-aws-s3-and-postgresql-af29a08213a1
+https://medium.com/@mikekenneth77/twitter-data-pipeline-with-apache-airflow-minio-s3-compatible-object-storage-2335fc697e7a
+
+https://www.youtube.com/watch?v=sVNvAtIZWdQ
+
+
+Paso 1:
+docker pull quay.io/minio/minio:latest
+
+Paso 2:
+sudo touch /etc/default/minio
+
+# MINIO_ROOT_USER and MINIO_ROOT_PASSWORD sets the root account for the MinIO server.
+# This user has unrestricted permissions to perform S3 and administrative API operations on any resource in the deployment.
+# Omit to use the default values 'minioadmin:minioadmin'.
+# MinIO recommends setting non-default values as a best practice, regardless of environment
+
+MINIO_ROOT_USER=minioadmin
+MINIO_ROOT_PASSWORD=minioadmin
+
+# MINIO_VOLUMES sets the storage volume or path to use for the MinIO server.
+
+MINIO_VOLUMES="/mnt/data"
+
+# MINIO_SERVER_URL sets the hostname of the local machine for use with the MinIO Server
+# MinIO assumes your network control plane can correctly resolve this hostname to the local machine
+
+# Uncomment the following line and replace the value with the correct hostname for the local machine and port for the MinIO server (9000 by default).
+
+#MINIO_SERVER_URL="http://minio.example.net:9000"
+
+Paso 3:
+
+docker run -dt                                  \
+  -p 9000:9000 -p 9090:9090                     \
+  -v PATH:/mnt/data                             \
+  -v /etc/default/minio:/etc/config.env         \
+  -e "MINIO_CONFIG_ENV_FILE=/etc/config.env"    \
+  --name "minio"                                \
+    minio/minio server --console-address ":9090"
+
+Paso 4:
+
+docker logs minio
+
+Paso 5:
+
+http://localhost:9001 
+
+
+
