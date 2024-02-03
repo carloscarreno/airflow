@@ -11,12 +11,12 @@ default_args = {
 
 # ti es una variable built-in usanda para referenciar las instancias de tareas
 def printMessage(rol, ti):
-  usuario=ti.xcom_pull(task_ids='Task_getUsuario')
-  name=ti.xcom_pull(task_ids='Task_getUsuario',key='name')
-  lastname=ti.xcom_pull(task_ids='Task_getUsuario',key='lastname')
+  usuario=ti.xcom_pull(task_ids='Task_setUsuario')
+  name=ti.xcom_pull(task_ids='Task_setUsuario',key='name')
+  lastname=ti.xcom_pull(task_ids='Task_setUsuario',key='lastname')
   print(f"Bienvenido {name}, {lastname} a Airflow! {usuario} ud ingreso como {rol}")
 
-def getUsuario(ti):
+def setUsuario(ti):
   ti.xcom_push(key='name', value='Juan')
   ti.xcom_push(key='lastname', value='Perez')
   return 'ccarrenovi'
@@ -36,8 +36,8 @@ with DAG(
     )
 
     task2 = PythonOperator(
-        task_id = 'Task_getUsuario',
-        python_callable=getUsuario
+        task_id = 'Task_setUsuario',
+        python_callable=setUsuario
     )
   
     task2 >> task1

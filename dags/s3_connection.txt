@@ -1,0 +1,1 @@
+{"aws_access_key_id":"minioadmin","aws_secret_access_key":"minioadmin","host":"http://192.168.56.101:9000"}
